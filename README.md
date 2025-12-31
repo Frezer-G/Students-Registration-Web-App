@@ -23,28 +23,6 @@ JDBC
 MySQL / PostgreSQL (any relational DB)
 VS Code
 
-Project Structure
-student-registration/
-│
-├── src/main/java/
-│   ├── config/
-│   │   └── JakartaRestConfiguration.java
-│   │
-│   ├── resource/
-│   │   └── JakartaEE8Resource.java
-│   │
-│   ├── model/
-│   │   └── Student.java
-│   │
-│   └── database/
-│       └── DatabaseConnection.java
-│
-├── src/main/webapp/
-│
-├── pom.xml
-└── README.md
-
-
 Application Features
 1. Student Registration
 Endpoint: POST /register
