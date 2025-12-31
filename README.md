@@ -1,120 +1,142 @@
-Student Registration Servlet Application
-Project Overview
-This project is a simple Java web application built using Java Servlets, Apache Tomcat, and Maven.
-The application allows users to:
+# RegisterShowAll Servlet Web Application
 
-Register students by submitting their name, email, and academic year.
+A simple Java Servlet–based web application for student registration and listing. This project demonstrates core concepts of Java Servlets, JDBC, and database integration using Apache NetBeans and Apache Tomcat.
 
-View all registered students in a tabular format retrieved from a database.
+---
 
-The project demonstrates core concepts of:
-Java Servlets
-HTTP GET and POST methods
-JDBC database connectivity
-Maven project structure
-Deployment on Apache Tomcat
+## Table of Contents
 
-Technologies Used
-Java (JDK 8 or higher)
-Java Servlets (Servlet API)
-Apache Tomcat (v9 or v10)
-Maven
-JDBC
-MySQL / PostgreSQL (any relational DB)
-VS Code
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Application Flow](#application-flow)
+- [Endpoints](#endpoints)
+- [Database Schema](#database-schema)
+- [Project Structure](#project-structure)
+- [Setup & Installation](#setup--installation)
+- [Validation Rules](#validation-rules)
+- [Future Improvements](#future-improvements)
+- [License](#license)
 
-Application Features
-1. Student Registration
-Endpoint: POST /register
-Input Fields:
-Student Name
-Email
-Year
+---
 
-Process:
-Data is received by the RegisterServlet
-Input validation is performed
-Data is inserted into the database using JDBC
+## Overview
 
-2. View All Students
-Endpoint: GET /show_all
+**RegisterShowAll** is a basic servlet web application that allows users to register students into a database and view all registered students in a table. It follows a simple MVC-style approach where servlets act as controllers and JSP/HTML handle the presentation layer.
 
-Process:
-ShowAllServlet connects to the database
-Retrieves all student records
-Displays them in an HTML table
-Database Schema
-Table Name: students
-Column Name	Data Type	Constraints
-id	INT	Primary Key, Auto Increment
-name	VARCHAR(100)	NOT NULL
-email	VARCHAR(100)	NOT NULL, UNIQUE
-year	INT	NOT NULL
+---
 
-How the Project Works (Flow)
-User opens the application in a browser.
-The registration form is displayed.
-User submits student details.
+## Features
 
-The servlet:
-Reads request parameters
-Validates input
-Stores data in the database
-User navigates to View Students.
-Servlet fetches data and renders it in a table.
+- Student registration via HTML form
+- Server-side input validation
+- Persistent data storage using a relational database
+- Display of all registered students in tabular format
+- Simple and clean structure suitable for learning purposes
 
-How to Run the Project
-Step 1: Prerequisites
-Make sure you have installed:
-JDK 8 or later
-Apache Tomcat
-Maven
-VS Code with Java extensions
+---
 
-Step 2: Database Setup
-Create a database:
-CREATE DATABASE student_db;
-Create the table:
+## Tech Stack
 
-CREATE TABLE students (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    year INT NOT NULL
-);
+- Java (JDK 8+)
+- Java Servlets (Jakarta Servlet API)
+- Apache NetBeans IDE
+- Apache Tomcat
+- JDBC
+- MySQL or PostgreSQL
+- HTML / CSS
 
-Update database credentials in your servlet or DB utility class.
+---
 
-Step 3: Maven Build
-Open the project folder in VS Code and run:
-mvn clean install
-This will download dependencies and build the project.
+## Application Flow
 
-Step 4: Configure Tomcat
-Add Apache Tomcat server in VS Code.
-Deploy the project to Tomcat.
-Start the server.
+1. User fills out the student registration form
+2. Form data is submitted to the `RegisterServlet`
+3. Servlet validates and stores the data in the database
+4. User can navigate to view all registered students
+5. The `ShowAllServlet` retrieves and displays student data
 
-Step 5: Access the Application
-Open your browser and go to:
-http://localhost:8080/student-registration/
-Examples:
-Registration page:
-http://localhost:8080/student-registration/
+---
 
-View all students:
-http://localhost:8080/student-registration/show_all
+## Endpoints
 
-Common Issues & Solutions
-404 Error:
-Ensure servlet mappings are correct and Tomcat is running.
+### Register Student
 
-Database Connection Error:
-Check JDBC URL, username, password, and database driver dependency.
+- **Method:** POST  
+- **URL:** `/register`  
+- **Description:** Accepts student name, email, and year, validates input, and inserts the record into the database.
 
-Port Already in Use:
-Change Tomcat port from 8080 in server.xml.
+### Show All Students
 
-Conclusion
+- **Method:** GET  
+- **URL:** `/show_all`  
+- **Description:** Fetches all student records and displays results in an HTML table.
 
-This project demonstrates a complete Java Servlet-based web application with database integration. It follows standard Maven structure and can be easily deployed using Apache Tomcat. It is suitable for academic labs and introductory web application development using Java.
+---
+
+## Database Schema
+
+**Table Name:** `students`
+
+| Column | Type         | Constraints                 |
+|--------|--------------|----------------------------|
+| id     | INT          | Primary Key, Auto Increment |
+| name   | VARCHAR(100) | Not Null                    |
+| email  | VARCHAR(100) | Not Null, Unique            |
+| year   | INT          | Not Null                    |
+
+---
+
+## Project Structure
+
+RegisterShowAll/
+├── src/
+│ └── java/
+│ └── servlet/
+│ ├── RegisterServlet.java
+│ └── ShowAllServlet.java
+├── web/
+│ ├── index.html
+│ ├── register.jsp
+│ └── show_all.jsp
+├── WEB-INF/
+│ └── web.xml
+└── README.md
+
+
+---
+
+## Setup & Installation
+
+1. Install **Apache NetBeans** and **Apache Tomcat**
+2. Create a new Java Web Application project
+3. Configure Tomcat as the server
+4. Create the `students` table in your database
+5. Update JDBC connection details in the servlets
+6. Build and deploy the application
+7. Access the app via a web browser
+
+---
+
+## Validation Rules
+
+- Name must not be empty
+- Email must be unique and not empty
+- Year must be a valid integer
+
+---
+
+## Future Improvements
+
+- Update and delete student records
+- Client-side validation
+- Pagination and search
+- Improved UI styling
+- Authentication support
+
+---
+
+## License
+
+This project is provided for educational and learning purposes.
+
